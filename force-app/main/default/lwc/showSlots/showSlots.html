@@ -1,0 +1,18 @@
+<template>
+    <ul class="slds-has-dividers_around-space">
+        <template for:each={slots} for:item="slot">
+            <li class="slds-item" key={slot.id} onclick={handleItemClick} data-index={slot.index}>
+                <article class="slds-tile slds-tile_board">
+                    <h3 class="slds-tile__title slds-truncate">
+                        <lightning-formatted-date-time value={slot.start} class="slds-text-heading_small"></lightning-formatted-date-time>
+                    </h3>
+                    <div class="slds-tile__detail slds-text-heading_medium">
+                        <lightning-formatted-date-time value={slot.start} hour="2-digit" minute="2-digit"></lightning-formatted-date-time>
+                        &nbsp;-&nbsp;
+                        <lightning-formatted-date-time value={slot.finish} hour="2-digit" minute="2-digit" time-zone-name="short"></lightning-formatted-date-time>
+                    </div>
+                </article>
+            </li>
+        </template>
+    </ul>
+</template>
