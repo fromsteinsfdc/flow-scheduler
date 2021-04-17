@@ -1,7 +1,6 @@
 public class FlowSchedulerGetSlots {
 
     final public static boolean useExactAppointment = false;
-    public class FlowSchedulerGetSlotsException extends Exception {}
 
     @InvocableMethod(label='Get Booking Slots')
     public static List<Response> getSlots(List<Request> requests) {
