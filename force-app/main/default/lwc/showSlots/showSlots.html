@@ -1,18 +1,39 @@
 <template>
-    <ul class="slds-has-dividers_around-space">
-        <template for:each={slots} for:item="slot">
-            <li class="slds-item" key={slot.id} onclick={handleItemClick} data-index={slot.index}>
-                <article class="slds-tile slds-tile_board">
-                    <h3 class="slds-tile__title slds-truncate">
-                        <lightning-formatted-date-time value={slot.start} class="slds-text-heading_small"></lightning-formatted-date-time>
-                    </h3>
-                    <div class="slds-tile__detail slds-text-heading_medium">
-                        <lightning-formatted-date-time value={slot.start} hour="2-digit" minute="2-digit"></lightning-formatted-date-time>
-                        &nbsp;-&nbsp;
-                        <lightning-formatted-date-time value={slot.finish} hour="2-digit" minute="2-digit" time-zone-name="short"></lightning-formatted-date-time>
-                    </div>
-                </article>
-            </li>
+    <template if:false={error}>
+        <template if:true={slots.length}>
+            <ul class="slds-has-dividers_around-space">
+                <template for:each={displayedSlots} for:item="slot">
+                    <template if:true={slot.firstInDay}>
+                        <div class={slot.spaceClass} key={slot.id}>
+                            <h3 class="slds-tile__title slds-truncate slds-p-vertical_xx-small" key={slot.id}>
+                                <lightning-formatted-date-time value={slot.start} class="slds-text-heading_small" year="numeric" month="short" day="2-digit" weekday="long">
+                                </lightning-formatted-date-time>
+                            </h3>
+                        </div>
+                    </template>
+                    <li class="slds-item" key={slot.id} onclick={handleItemClick} data-index={slot.index}>
+                        <article class="slds-tile slds-tile_board">
+                            <div class="slds-tile__detail slds-text-heading_medium">
+                                <lightning-formatted-date-time value={slot.start} hour="2-digit" minute="2-digit">
+                                </lightning-formatted-date-time>
+                                &nbsp;-&nbsp;
+                                <lightning-formatted-date-time value={slot.finish} hour="2-digit" minute="2-digit"
+                                    time-zone-name="short"></lightning-formatted-date-time>
+                            </div>
+                        </article>
+                    </li>
+                </template>
+            </ul>
+            <template if:true={showAddSlots}>
+                <div class="slds-text-heading_small slds-text-link slds-text-align_center slds-p-top_small slds-text-link_reset"
+                    onclick={showMoreSlots}>Show more slots</div>
+            </template>
         </template>
-    </ul>
+        <template if:false={slots.length}>
+            <div class="slds-text-heading_small slds-text-align_center">No slots available</div>
+        </template>
+    </template>
+    <template if:true={error}>
+        <div class="slds-text-heading_small slds-text-align_center slds-text-color_error">Error: {error}</div>
+    </template>
 </template>

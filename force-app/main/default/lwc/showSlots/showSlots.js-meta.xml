@@ -9,6 +9,7 @@
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
             <property name="slots" label="Slots" type="apex://BookingSlot[]" role="inputOnly"/>
+            <property name="error" label="Error Message" type="String" role="inputOnly"/>
             <property name="startTime" label="Start Time" type="string" role="outputOnly"/>
             <property name="endTime" label="End Time" type="string" role="outputOnly"/>
         </targetConfig>
