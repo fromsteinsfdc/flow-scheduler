@@ -1,5 +1,7 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { FlowAttributeChangeEvent } from 'lightning/flowSupport';
+import USER_TIMEZONE from '@salesforce/i18n/timeZone';
+
 //import { createRecord } from 'lightning/uiRecordApi';
 
 const ITEM_CLASS = 'slds-item';
@@ -36,6 +38,10 @@ export default class ShowSlots extends LightningElement {
 
     get showAddSlots() {
         return this.displayedSlots.length < this.slots.length;
+    }
+
+    get userTimezone() {
+        return USER_TIMEZONE;
     }
 
     @api

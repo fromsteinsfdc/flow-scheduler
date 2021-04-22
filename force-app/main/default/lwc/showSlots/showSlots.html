@@ -14,10 +14,10 @@
                     <li class="slds-item" key={slot.id} onclick={handleItemClick} data-index={slot.index}>
                         <article class="slds-tile slds-tile_board">
                             <div class="slds-tile__detail slds-text-heading_medium">
-                                <lightning-formatted-date-time value={slot.start} hour="2-digit" minute="2-digit">
+                                <lightning-formatted-date-time value={slot.start} hour="2-digit" minute="2-digit" time-zone={userTimezone}>
                                 </lightning-formatted-date-time>
                                 &nbsp;-&nbsp;
-                                <lightning-formatted-date-time value={slot.finish} hour="2-digit" minute="2-digit"
+                                <lightning-formatted-date-time value={slot.finish} hour="2-digit" minute="2-digit" time-zone={userTimezone}
                                     time-zone-name="short"></lightning-formatted-date-time>
                             </div>
                         </article>
